@@ -41,7 +41,7 @@ function extractEmail(record, columnName) {
     col => col.trim().toLowerCase() === columnName.trim().toLowerCase()
   );
   if (matchedCol && record[matchedCol]) {
-    emailValue = record[Col];
+    emailValue = record[matchedCol];
   } else {
     // Fallbacks to common names
     const fallbacks = ['email', 'Email', 'e-mail', 'E-mail'];
@@ -100,6 +100,7 @@ async function main() {
     await sleep(DELAY_MS);
 
     const result = await limit(() => verifyEmail(email));
+    console.log(`SMTP verification for ${email}: ${result.smtp.response}`);
     stringifier.write({
       ...record,
       email: result.email,
