@@ -14,6 +14,7 @@ const logPath = path.join(logDir, 'errors.log');
  */
 export async function logError(email, message) {
   const entry = `[${new Date().toISOString()}] [${email}] ${message}\n`;
+  console.log(entry)
 
   try {
     await fs.appendFile(logPath, entry, { encoding: 'utf8' });

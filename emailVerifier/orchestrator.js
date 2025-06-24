@@ -85,10 +85,10 @@ export async function verifyEmail(email) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    await sleep(randomDelay)
-
     // 5. Catch-all detection (only if we have a host)
     if (smtpResult.host) {
+      // Call sleep(randomDelay) function only if we have a valid SMTP host
+      await sleep(randomDelay)
       try {
         result.catchAll = await detectCatchAll(email);
       } catch (err) {

@@ -101,11 +101,9 @@ async function main() {
       return;
     }
 
-    // Add the delay before the verification
-    await sleep(DELAY_MS);
 
     const result = await limit(() => verifyEmail(email));
-    console.log(`SMTP verification for ${email}: ${result.smtp.response}`);
+    console.log(`SMTP verification for ${email}: ${result.smtp.response}\n`);
     stringifier.write({
       ...record,
       email: result.email,
@@ -119,6 +117,9 @@ async function main() {
       catchAll: result.catchAll,
       errors: result.errors.join('; ')
     });
+
+    // Add the delay after the verification
+    await sleep(DELAY_MS);
 
     parser.resume();
   });
