@@ -1,0 +1,17 @@
+{
+  "name": "email-verifier",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "verifyFromCsv.js",
+  "scripts": {
+    "start": "node verifyFromCsv.js"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "csv-parse": "^5.5.2",
+    "csv-stringify": "^6.4.2",
+    "p-limit": "^5.0.0",
+    "smtp-client": "^1.17.0",
+    "validator": "13.15.15"
+  }
+}
