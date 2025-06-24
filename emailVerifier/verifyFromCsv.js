@@ -36,29 +36,34 @@ function extractEmail(record, columnName) {
   const columns = Object.keys(record);
   let emailValue;
 
-  // Case-insensitive match for specified column
-  const matchedCol = columns.find(
-    col => col.trim().toLowerCase() === columnName.trim().toLowerCase()
-  );
-  if (matchedCol && record[matchedCol]) {
-    emailValue = record[matchedCol];
-  } else {
-    // Fallbacks to common names
-    const fallbacks = ['email', 'Email', 'e-mail', 'E-mail'];
+  // Only try to match specified column if columnName is provided
+  if (columnName) {
+    const matchedCol = columns.find(
+      col => col.trim().toLowerCase() === columnName.trim().toLowerCase()
+    );
+    if (matchedCol && record[matchedCol]) {
+      emailValue = record[matchedCol];
+    }
+  }
+  
+  // If no email found yet, try fallbacks to common names
+  if (!emailValue) {
+    const fallbacks = ['email', 'Email', 'e-mail', 'E-mail', 'EMAIL'];
     for (const alt of fallbacks) {
       if (columns.includes(alt) && record[alt]) {
         emailValue = record[alt];
         break;
       }
     }
-    // Last fallback – scan all values for a valid email using checkSyntax
-    if (!emailValue) {
-      emailValue = Object.values(record).find(
-        val => typeof val === 'string' && checkSyntax(val.trim())
-      );
-      if (emailValue) {
-        console.warn('[WARN] Could not find specified email column. Extracted using validator:', emailValue);
-      }
+  }
+  
+  // Last fallback – scan all values for a valid email using checkSyntax
+  if (!emailValue) {
+    emailValue = Object.values(record).find(
+      val => typeof val === 'string' && checkSyntax(val.trim())
+    );
+    if (emailValue) {
+      console.warn('[WARN] Could not find specified email column. Extracted using validator:', emailValue);
     }
   }
   return emailValue;
