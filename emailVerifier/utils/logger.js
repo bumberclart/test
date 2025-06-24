@@ -1,9 +1,10 @@
 import fs from 'fs/promises';
+import { existsSync, mkdirSync } from 'fs';
 import path from 'path';
 
 const logDir = path.resolve('./logs');
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir, { recursive: true });
+if (!existsSync(logDir)) {
+  mkdirSync(logDir, { recursive: true });
 }
 const logPath = path.join(logDir, 'errors.log');
 
