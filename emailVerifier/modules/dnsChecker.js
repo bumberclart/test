@@ -1,5 +1,5 @@
 import dns from 'dns/promises';
-import { retry } from './retry.js';
+import { retry } from '../utils/retry.js';
 
 export async function hasValidMx(email) {
   const domain = email.split('@')[1];

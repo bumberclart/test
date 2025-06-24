@@ -1,10 +1,10 @@
-import { logError } from './logger.js';
-import { checkSyntax } from './syntaxChecker.js';
-import { hasValidMx } from './dnsChecker.js';
-import { checkDisposable } from './disposableChecker.js';
-import { verifySmtp } from './smtpVerifier.js';
-import { detectCatchAll } from './catchAllDetector.js';
-import { isRoleAccount } from './roleChecker.js';
+import { logError } from './utils/logger.js';
+import { checkSyntax } from './modules/syntaxChecker.js';
+import { hasValidMx } from './modules/dnsChecker.js';
+import { checkDisposable } from './modules/disposableChecker.js';
+import { verifySmtp } from './modules/smtpVerifier.js';
+import { detectCatchAll } from './modules/catchAllDetector.js';
+import { isRoleAccount } from './modules/roleChecker.js';
 
 /**
  * Orchestrates full email verification.

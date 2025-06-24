@@ -11,7 +11,7 @@
     "csv-parse": "^5.5.2",
     "csv-stringify": "^6.4.2",
     "p-limit": "^5.0.0",
-    "smtp-client": "^1.17.0",
+    "smtp-client": "^0.4.0",
     "validator": "13.15.15"
   }
 }

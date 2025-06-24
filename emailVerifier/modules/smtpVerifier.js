@@ -1,6 +1,6 @@
 import dns from 'dns/promises';
 import { SMTPClient } from 'smtp-client';
-import { retry } from './retry.js';
+import { retry } from '../utils/retry.js';
 
 export async function verifySmtp(email) {
   const domain = email.split('@')[1];
